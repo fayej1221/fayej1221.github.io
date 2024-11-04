@@ -3,7 +3,7 @@
 
 # Uncomment and set the URL of your site (with protocol, e.g. `https://`)
 # NOTE: You don't need to provide this property when hosting on GitHub Pages or Netlify.
-# url:                   https://username.github.io
+url:                   https://faye-1221.github.io
 
 # Uncomment and set the "base URL" of your site.
 # When your site is in a subdirectory, set to `/<name of directory>`,
@@ -17,54 +17,41 @@
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
-lang:                  en
+lang:                  ko
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Starter Kit
+title:                 faye-1221
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  데이터 분석 및 컴퓨터 비전 개발을 위해 학습한 내용과 프로젝트를 정리하는 블로그입니다.
 
 # A shorter description for the sidebar.
-tagline:               Change `tagline` in `_config.yml`
+tagline:               faye의 기억저장소
 
 # A list of keywords for your blog
-keywords:              []
+keywords:              [학습 기록, 데이터 분석, 컴퓨터 비전, python, 알고리즘]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/img/logo.png
+
+logo:                  /assets/img/Togepi.jpeg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                <firstname> <lastname>
-  email:               <mail@domain.tld>
-  # # Used by `jekyll-seo-tag`:
-  # twitter:             <username>
+  name:                faye-1221
+  email:               faye_1221@naver.com
 
 # Add links to the sidebar.
 menu:
-  - title:             Example
-    url:               /example/
-  - title:             Documentation
-    url:               /docs/
-  - title:             About
-    url:               /about/
+  - title:             Blog
+    url:               /blog/
 
-# Add links to the footer.
-# Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
-legal:
-  - title:             LICENSE
-    url:               /LICENSE/
-  - title:             NOTICE
-    url:               /NOTICE/
-  - title:             CHANGELOG
-    url:               /CHANGELOG/
+  - title:             Portfolio
+    url:               https://freetour0.notion.site/1325a2525826807ca941c7042a4c7826
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             © 2024. All rights reserved.
@@ -135,17 +122,17 @@ defaults:
         overlay:       false
 
   # Don't include documents in assets in the sitemap
-  - scope:
-      path:            assets/
-    values:
-      sitemap:         false
+  # - scope:
+  #     path:            assets/
+  #   values:
+  #     sitemap:         false
 
-  # Don't include licenses in sitemap (feel free to delete)
-  - scope:
-      path:            licenses/
-    values:
-      layout:          plain
-      sitemap:         false
+  #You can use the following to enable comments on all posts.
+  # - scope:
+  #     path:            licenses/
+  #   values:
+  #     layout:          plain
+  #     sitemap:         false
 
   # # You can use the following to enable comments on all posts.
   # - scope:
@@ -421,4 +408,4 @@ jekyll_compose:
         path: /assets/img/sidebar-bg.jpg
       links:
         - title: Project Link
-          url: https://example.com
+          url: https://faye-1221.github.io
