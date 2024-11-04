@@ -8,7 +8,8 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    데이터 분석과 컴퓨터 비전 분야에 대한 깊이 있는 지식을 쌓고 있으며, 학습한 내용을 블로그에 포스팅하여 지식을 공유하고 성장해 나가고자 합니다.
+    데이터 분석과 컴퓨터 비전 분야에 대해 학습하고 있습니다.
+    블로그를 통해 학습 여정을 기록하고 더욱 깊이 있는 학습을 이어가고자 합니다.
 
   # This photo will be used in the about section
   picture:
