@@ -68,14 +68,7 @@ description: >
 
 프로젝트 진행 기간: 2024.02. - 2024.03. (1개월)
 
-<div id="gif-container" style="width: 300px; height: 200px;"></div>
-<script>
-  const gifContainer = document.getElementById('gif-container');
-  const gif = new Image();
-  gif.src = '../assets/img/portfolio/boost_final/거리측정.gif';
-  gif.width = 300;
-  gifContainer.appendChild(gif);
-</script>
+<img src="{{ site.baseurl }}/assets/img/portfolio/boost_final/거리측정.gif" width="300">
 
 <video width="320" height="240" controls>
   <source src="../assets/img/portfolio/boost_final/프로그램_데모.mp4">
