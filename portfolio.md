@@ -68,7 +68,7 @@ description: >
 
 프로젝트 진행 기간: 2024.02. - 2024.03. (1개월)
 
-<img src="{{ site.baseurl }}/assets/img/portfolio/boost_final/거리측정.gif" width="300">
+<img src="../assets/img/portfolio/boost_final/distance.gif" width="300">
 
 <video width="320" height="240" controls>
   <source src="../assets/img/portfolio/boost_final/프로그램_데모.mp4">
