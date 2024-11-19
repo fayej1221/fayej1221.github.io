@@ -26,7 +26,11 @@ tags: [ML, Decision Tree]
 가능한 한 적은 결정 노드로 높은 예측 정확도를 가지려면 데이터를 분류할 때 최대한 많은 데이터 세트가 해당 분류에 속할 수 있도록 결정 노드가 정해져야 합니다.
 이를 위해 최대한 균일한 데이터 세트를 구성할 수 있도록 분할하는 것이 필요합니다.
 
-결정 노드는 정보 균일도가 높은 데이터 세트를 먼저 선택할 수 있도록 규칙 조건을 만듭니다. 이러한 정보 균일도를 측정하는 대표적인 방법은 **엔트로피를 이용한 정보 이득(Information Gain) 지수**와 **지니 계수**가 있습니다.
+결정 노드는 **정보 균일도가 높은 데이터 세트**를 먼저 선택할 수 있도록 규칙 조건을 만듭니다. 이러한 정보 균일도를 측정하는 대표적인 방법은 **엔트로피를 이용한 정보 이득(Information Gain) 지수**와 **지니 계수**가 있습니다.
+
+## Decision Tree의 특징
+가장 **장점**은 '균일도'라는 룰을 기반으로 하고 있어서 알고리즘이 쉽고 간단하는 점입니다. 노드들을 시각화할 수 있으며 균일도만 신경쓰면 되서 특별한 경우를 제외하고는 각 피처의 스케일링과 정규화 같은 전처리 작업이 필요 없습니다.
+반면 가장 **단점**은 과적합으로 인해 정확도가 떨어진다는 점입니다. 이를 극복하기 위해 트리의 크기를 사전에 제한하는 튜닝이 필요합니다.
 
 ## 분할 기준 알고리즘: 지니 계수, 정보이득
 ### 불순도(Impurity)
@@ -230,4 +234,123 @@ $$Gain(D, A) = h(D) - h_A(D)$$
 ![image](/assets/img/2024-11-18/컴퓨터예제2.jpg)
 
 # Decision Tree 실습
-시각화는 Graphviz 패키지를 활용합니다.
+sklearn은 CART(Classification And Regression Trees) 알고리즘 기반입니다.
+
+## Decision Tree 파라미터
+DeciisonTreeClassifier, DecisionTreeRegressor 모두 파라미터는 다음과 같이 동일한 파라미터를 사용합니다.
+
+- **min_samples_split**: 노드를 분할하기 위한 최소한의 샘플 데이터 수로 과적합을 제어하는데 사용, 디폴트: 2, 작게 설정할 수록 노드가 많아져서 과적합 가능성 증가
+- **min_samples_leaf**: 말단 노드(leaf)가 되기 위한 최소한의 샘플 데이터 수, min_samples_split과 유사하게 과적합 제어 용도, 그러나 비대칭적 데이터의 경우 데이터가 극도로 작아질 수 있으니 이 경우 작게 설정
+- **max_fatures**: 최적의 분할을 위하 고려할 최대 피처 개수, 디폴트 None, 데이터 세트의 모든 피처를 사용해 분할 수행
+  - int: 대상 피처의 개수, float: 전체 피처 중 대상 피처의 퍼센트
+  - 'sqrt': 전체 피처 중 sqrt(전체 피처 수), 즉 루트(전체 피처 개수)만큼 선정
+  - 'auto': sqrt와 동일
+  - 'log': 전체 피처 중 log_2(전체 피처 개수)선정
+  - 'None': 전체 피처 선정
+- **max_depth**: 최대 깊이 규정, 디폴트 None, None으로 설정 시 완벽하게 클래스 결정 값이 될 때까지 깊이를 계속 키우며 분할하거나 노드가 가지는 데이터 개수가 min_samples_split보다 작아질 때까지 계속 깊이를 증가시킴, 깊이가 깊어지면 min_samples_split 설정대로 최대 분할하여 과적합되니 제어 필수 
+- **max_leaf_nodes**: 말단 노드의 최대 개수
+
+시각화는 **Graphviz 패키지**를 활용합니다.
+
+## 실습 코드
+```python
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+'''
+class sklearn.tree.DecisionTreeClassifier(*, criterion='gini', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None,
+random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0,class_weight=None, ccp_alpha=0.0, monotonic_cst=None)
+'''
+
+dt_clf = DecisionTreeClassifier(random_state=156)
+dt_clf.fit(X_train, y_train)
+pred = dt_clt.predict(X_test)
+accuracy = accuracy_score(y_test, pred)
+```
+
+## 직접 구현
+```python
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+pd_data = pd.read_csv('AllElectronics.csv')
+pd_data = pd_data.drop("RID",axis = 1)
+print(pd_data)
+
+# 데이터셋을 학습용과 테스트용으로 분리
+train_df, test_df = train_test_split(pd_data, test_size=0.3, random_state=42)
+
+# 정보 이득 계산 함수들
+def get_info(df):
+    buy = df[df["class_buys_computer"] == "yes"]
+    not_buy = df[df["class_buys_computer"] == "no"]
+    x = np.array([len(buy) / len(df), len(not_buy) / len(df)])
+    y = np.log2(x[x != 0])
+
+    info_all = -sum(x[x != 0] * y)
+    return info_all
+
+def get_attribute_info(df, attribute_name):
+    attribute_values = df[attribute_name].unique()
+    get_infos = []
+    for value in attribute_values:
+        split_df = df[df[attribute_name] == value]
+        get_infos.append((len(split_df) / len(df)) * get_info(split_df))
+    return sum(get_infos)
+
+# 의사결정 나무 빌드 함수
+def build_decision_tree(df, attributes):
+    if len(df["class_buys_computer"].unique()) == 1:
+        return df["class_buys_computer"].iloc[0]
+
+    if not attributes:
+        return df["class_buys_computer"].mode()[0]
+
+    info_all = get_info(df)
+    info_gains = []
+
+    for attribute in attributes:
+        attribute_info = get_attribute_info(df, attribute)
+        info_gain = info_all - attribute_info
+        info_gains.append((attribute, info_gain))
+
+    best_attribute, _ = max(info_gains, key=lambda x: x[1])
+
+    tree = {best_attribute: {}}
+    attribute_values = df[best_attribute].unique()
+    remaining_attributes = [attr for attr in attributes if attr != best_attribute]
+
+    for value in attribute_values:
+        split_df = df[df[best_attribute] == value]
+        subtree = build_decision_tree(split_df, remaining_attributes)
+        tree[best_attribute][value] = subtree
+
+    return tree
+
+# 학습 데이터로 의사결정 나무 학습
+attributes = ["age", "income", "student", "credit_rating"]
+decision_tree = build_decision_tree(train_df, attributes)
+
+# 예측 함수
+def predict(tree, sample):
+    attribute = list(tree.keys())[0]
+    
+    if sample[attribute] in tree[attribute]:
+        subtree = tree[attribute][sample[attribute]]
+        if isinstance(subtree, dict):
+            return predict(subtree, sample)
+        else:
+            return subtree
+    else:
+        return "unknown"
+
+# 테스트 데이터에 대한 예측 수행
+test_samples = test_df.to_dict(orient="records")
+predictions = [predict(decision_tree, sample) for sample in test_samples]
+
+# 정확도 계산
+actual = test_df["class_buys_computer"].values
+accuracy = accuracy_score(actual, predictions)
+print("예측 정확도:", accuracy)
+```
