@@ -25,13 +25,13 @@ title:                 faye-1221
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  데이터 분석 및 컴퓨터 비전 개발을 위해 학습한 내용과 프로젝트를 정리하는 블로그입니다.
+  공부한 내용을 정리하는 블로그입니다.
 
 # A shorter description for the sidebar.
 tagline:               faye의 기억저장소
 
 # A list of keywords for your blog
-keywords:              [학습 기록, 데이터 분석, 컴퓨터 비전, python, 알고리즘]
+keywords:              [학습 기록, 데이터 분석, 머신러닝, 컴퓨터 비전, python, 알고리즘]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
