@@ -6,6 +6,9 @@ categories: [OpenCV]
 tags: [CLAHE]
 ---
 
+* this unordered seed list will be replaced by the toc
+{:toc}
+
 # Histogram Equalization
 의료 영상은 포맷 외에도 조명 및 대비 문제로 인해 시각적 이해가 어려움
 
