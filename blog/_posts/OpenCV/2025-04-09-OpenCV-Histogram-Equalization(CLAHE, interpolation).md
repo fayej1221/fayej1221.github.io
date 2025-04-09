@@ -33,12 +33,15 @@ tags: [Histogram Equalization, CLHAE, interpolation]
 4. 변환표 T를 계산
 
 **일반적인 평활화 공식**
+
 $$
 v_{\text{new}} = \text{round} \left( \frac{CDF(v) - CDF_{\text{min}}}{N - CDF_{\text{min}}} \times (L - 1) \right)
 $$
+
 - cdf_min은 0을 제외, M: 너비, L: 보통 256의 수
 
 예를 들어 78의 cdf는 46이면
+
 $$
 h(78) = \mathrm{round} \left( \frac{46 - 1}{63} \times 255 \right) = \mathrm{round} \left( 0.714286 \times 255 \right) = 182
 $$
@@ -92,8 +95,11 @@ hsv2 = cv2.merge([h, s, v2])
 
 - d1: x에서 x1까지의 거리
 - d2: x에서 x2까지의 거리
+
 $$f(x) = f(x_1) + \frac{d_1}{d_1 + d_2} \left( f(x_2) - f(x_1) \right)$$
+
 를 정리하면 아래와 같음
+
 $$f(x) = \frac{d_2}{d_1+d_2}f(x_1)+\frac{d_1}{d_1+d_2}f(x_2)$$
 
 거리의 비를 합이 1이 되도록 정규화한다면 더 단순화도 가능
@@ -196,10 +202,8 @@ def interpolate(sub_image, UL,UR,BL,BR):
                                     y*(invX*BL[val] + x*BR[val]) )/area)          
     return dst
 
-#3
 def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
 
-#3-1
     histSize = 256    
     tileSizeX = src.shape[1]//tileX
     tileSizeY = src.shape[0]//tileY
@@ -212,10 +216,10 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
     dst = np.zeros_like(src)
     #print("tileX={}, tileY={}".format(tileX, tileY))
 
-#3-2: sublocks, tiles
+    #3-2: sublocks, tiles
     for iy in range(tileY):
         for ix in range(tileX):
-#3-2-1
+            #3-2-1
             y = iy*tileSizeY
             x = ix*tileSizeX
             roi = src[y:y+tileSizeY, x:x+tileSizeX] # tile
@@ -225,7 +229,7 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
             #tileHist = tileHist.flatten()                                           
             #print("tileHist[{},{}]=\n{}".format(iy, ix, tileHist))
 
-#3-2-2                  
+            #3-2-2                  
             if clipLimit > 0: # clip histogram
                 clipped = 0
                 for i in range(histSize):
@@ -247,12 +251,11 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
                             residual -= 1                            
             #print("redistributed[{},{}]=\n{}".format(iy, ix, tileHist))
             
-#3-2-3:     calculate Lookup table for equalizing
+            #3-2-3: calculate Lookup table for equalizing
             cdf = tileHist.cumsum()            
             tileLut = np.round(cdf*lutScale)
             LUT[iy, ix] = tileLut          
-#3-3            
-    # bilinear interpolation 
+    #3-3: bilinear interpolation 
     y = 0
     for i in range(tileY+1):
         if i==0:  # top row
@@ -265,8 +268,6 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
             subY = tileSizeY
             yU = i-1
             yB = i
-        #print("i={}, yU={}, yB={}, subY={}".format(i, yU, yB, subY))
-        
         x = 0
         for j in range(tileX+1):
             if j==0: # left column
@@ -279,8 +280,7 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
                 subX = tileSizeX
                 xL = j-1
                 xR = j
-            #print(" j={}, xL={}, xR={}, subX={}".format(j, xL, xR, subX))
-            
+
             UL = LUT[yU,xL]
             UR = LUT[yU,xR]
             BL = LUT[yB,xL]
@@ -294,8 +294,8 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
 
 dst2 = CLAHE(src, clipLimit= 40.0, tileX= 2, tileY= 2)
 print("dst=\n", dst2)
-
 ```
+
 - 히스토그램을 계산하고 clipLimit보다 큰 히스토그램 빈의 크기의 합을 clipped에 계산
 - clipped를 히스토그램에 균일하게 재분배
 - 재분배된 히스토그램을 누적시켜서 cdf 계산하고 평활화 변환표 계산 후 LUT에 저장
