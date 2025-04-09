@@ -185,9 +185,10 @@ cv2.createCLAHE를 통해 객체 생성 후 apply로 적용
     - 각 히스토그램에서 clipLimit이 2.5보다 큰 값은 히스토그램에 균등하게 재분배
 
 ## CLAHE 구현
-> Python으로 배우는 OpenCV 프로그래밍 예제 5.15
 
 ```python
+# Python으로 배우는 OpenCV 프로그래밍 예제 5.15
+
 def interpolate(sub_image, UL,UR,BL,BR):
     dst = np.zeros(sub_image.shape)
     sY, sX = sub_image.shape
@@ -247,7 +248,7 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
             cdf = tileHist.cumsum()            
             tileLut = np.round(cdf*lutScale)
             LUT[iy, ix] = tileLut
-            
+
     # bilinear interpolation 
     y = 0
     for i in range(tileY+1):
