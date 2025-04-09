@@ -186,12 +186,12 @@ cv2.createCLAHE를 통해 객체 생성 후 apply로 적용
 
 ## CLAHE 구현
 > Python으로 배우는 OpenCV 프로그래밍 예제 5.15
+
 ```python
 def interpolate(sub_image, UL,UR,BL,BR):
     dst = np.zeros(sub_image.shape)
     sY, sX = sub_image.shape
     area = sX*sY
-    #print("sX={}, sY={}".format(sX, sY))
 
     for y in range(sY):
         invY = sY-y
@@ -214,22 +214,15 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
 
     LUT = np.zeros((tileY, tileX, histSize))
     dst = np.zeros_like(src)
-    #print("tileX={}, tileY={}".format(tileX, tileY))
 
-    #3-2: sublocks, tiles
     for iy in range(tileY):
         for ix in range(tileX):
-            #3-2-1
             y = iy*tileSizeY
             x = ix*tileSizeX
             roi = src[y:y+tileSizeY, x:x+tileSizeX] # tile
             
             tileHist, bins = np.histogram(roi, histSize,[0,256])
-            #tileHist=cv2.calcHist([roi],[0],None,[histSize],[0,256]).astype(np.int)
-            #tileHist = tileHist.flatten()                                           
-            #print("tileHist[{},{}]=\n{}".format(iy, ix, tileHist))
-
-            #3-2-2                  
+            
             if clipLimit > 0: # clip histogram
                 clipped = 0
                 for i in range(histSize):
@@ -248,14 +241,14 @@ def CLAHE(src, clipLimit = 40.0, tileX = 8, tileY = 8):
                     for i in range(0, histSize, residualStep):
                         if residual> 0:
                             tileHist[i] += 1
-                            residual -= 1                            
-            #print("redistributed[{},{}]=\n{}".format(iy, ix, tileHist))
-            
-            #3-2-3: calculate Lookup table for equalizing
+                            residual -= 1
+
+            # calculate Lookup table for equalizing
             cdf = tileHist.cumsum()            
             tileLut = np.round(cdf*lutScale)
-            LUT[iy, ix] = tileLut          
-    #3-3: bilinear interpolation 
+            LUT[iy, ix] = tileLut
+            
+    # bilinear interpolation 
     y = 0
     for i in range(tileY+1):
         if i==0:  # top row
