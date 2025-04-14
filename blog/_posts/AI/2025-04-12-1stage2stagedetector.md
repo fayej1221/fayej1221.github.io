@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1, 2 - Stage Detector(Regio Proposal, anchor box)
+title: 1, 2 - Stage Detector(Region Proposal, anchor box)
 description: > 
   1, 2 - Stage Detector 차이
 categories: [AI]
