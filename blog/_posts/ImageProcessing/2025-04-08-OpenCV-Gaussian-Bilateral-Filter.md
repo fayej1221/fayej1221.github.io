@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GaussianFilter, BilateralFilter?
+title: ImageProcessing| GaussianFilter, BilateralFilter?
 description: GaussianFilter와 BilateralFilter
 categories: [OpenCV]
 tags: [GaussianFilter, BilateralFilter]

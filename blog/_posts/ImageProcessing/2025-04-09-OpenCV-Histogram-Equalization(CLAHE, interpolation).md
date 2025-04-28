@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Histogram Equalization, CLAHE(+interpolation)
+title: ImageProcessing| Histogram Equalization, CLAHE(+interpolation)
 description: Histogram Equalization, CLAHE 이해하기
 categories: [OpenCV]
 tags: [Histogram Equalization, CLHAE, interpolation]
