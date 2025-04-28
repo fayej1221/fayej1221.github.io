@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Union Find란?
+title: ALGORITHM| Union Find란?
 description: > 
   Union Find 설명과 기본 구현, 최적화 구현
 categories: [ALGORITHM]
