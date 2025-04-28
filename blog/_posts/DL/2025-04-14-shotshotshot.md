@@ -2,8 +2,8 @@
 layout: post
 title: DL| shotshotshot(zero, one, few)
 description: > 
-  DL| Zero shot, One shot, Few shot에 대해서
-categories: [AI]
+  Zero shot, One shot, Few shot에 대해서
+categories: [DL]
 tags: [Zero shot, One shot, Few shot]
 ---
 [One-shot / Few-shot / Zero-shot Learning](https://velog.io/@nomaday/n-shot-learning)
