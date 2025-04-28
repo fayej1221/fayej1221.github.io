@@ -1,10 +1,10 @@
 ---
 layout: post
-title: ALGORITHM| Minimum Spanning Tree와 풀이법, 문제 풀이
+title: Union Find란?
 description: > 
-  MST, Kruskal MST, Prim MST
+  Union Find 설명과 기본 구현, 최적화 구현
 categories: [ALGORITHM]
-tags: [MST, Kruskal, Prim]
+tags: [Disjoint Set, Union Find]
 ---
 [Union-Find 알고리즘](https://gmlwjd9405.github.io/2018/08/31/algorithm-union-find.html)
 [Disjoint Set #2 Union By Rank와 Path Compression](https://yonghwankim-dev.tistory.com/236)
