@@ -1,8 +1,8 @@
 ---
 layout: post
-title: DL| 2-stage detectors: R-CNN에서 Mask R-CNN까지의 발전
+title: DL| 2-stage detectors
 description: > 
-  2-stage detectors: R-CNN, SPPNet, Fast R-CNN, Faster R-CNN, Mask R-CNN
+  R-CNN에서 Mask R-CNN까지의 발전
 categories: [DL]
 tags: [R-CNN, SPPNet, Fast R-CNN, Faster R-CNN, Mask R-CNN, RoI Projection, RoI Pooling, RoI Align, RPN, NMS, Anchor box, SPP]
 ---
