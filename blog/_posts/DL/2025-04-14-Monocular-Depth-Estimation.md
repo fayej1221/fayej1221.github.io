@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Monocular Depth Estimation, Depth Anything
+title: DL| Monocular Depth Estimation, Depth Anything
 description: > 
   Monocular Depth Estimation
-categories: [AI]
+categories: [DL]
 tags: [Monocular Depth Estimation, Depth Anything]
 ---
 [20190416 Monocular Depth Estimation Junho Choi](https://www.youtube.com/watch?v=VbQcM40IpyA)

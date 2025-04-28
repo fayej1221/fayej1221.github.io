@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Minimum Spanning Tree와 풀이법, 문제 풀이
+title: ALGORITHM| Minimum Spanning Tree와 풀이법, 문제 풀이
 description: > 
   MST, Kruskal MST, Prim MST
 categories: [ALGORITHM]

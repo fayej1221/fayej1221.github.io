@@ -1,8 +1,8 @@
 ---
 layout: post
-title: shotshotshot(zero, one, few)
+title: DL| shotshotshot(zero, one, few)
 description: > 
-  Zero shot, One shot, Few shot에 대해서
+  DL| Zero shot, One shot, Few shot에 대해서
 categories: [AI]
 tags: [Zero shot, One shot, Few shot]
 ---

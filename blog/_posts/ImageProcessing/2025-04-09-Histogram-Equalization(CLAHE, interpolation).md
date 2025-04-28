@@ -1,8 +1,8 @@
 ---
 layout: post
-title: ImageProcessing| Histogram Equalization, CLAHE(+interpolation)
+title: ImageProcessing| Histogram Equalization, CLAHE
 description: Histogram Equalization, CLAHE 이해하기
-categories: [OpenCV]
+categories: [ImageProcessing]
 tags: [Histogram Equalization, CLHAE, interpolation]
 ---
 [김동근 교수님, 파이썬으로 배우는 OpenCV](https://product.kyobobook.co.kr/detail/S000001248967)
