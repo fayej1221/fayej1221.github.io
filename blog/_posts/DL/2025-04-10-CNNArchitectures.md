@@ -11,6 +11,9 @@ tags: [AlexNet, VGGNet, GoogLeNet, ResNet, ]
 BoostCampAITECH
 {:.note title="출처 및 참고"}
 
+* this unordered seed list will be replaced by the toc
+{:toc}
+
 **classifier: 어떤 물체가 영상 속에 들어있는지 분류하는 매핑**
 
 - **분류기를 어떻게 구현?**
