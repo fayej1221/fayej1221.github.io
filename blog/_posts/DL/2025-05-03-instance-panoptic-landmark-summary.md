@@ -7,7 +7,7 @@ categories: [DL]
 tags: [Mask R-CNN, YOLACT, YolactEdge, UPSNet, VSPNet, Landmark, heatmap, Hourglass, DensePose, RetinaFace]
 ---
 
-BEYOND AI BASIC
+BoostCampAITECH
 {:.note title="출처 및 참고"}
 
 * this unordered seed list will be replaced by the toc

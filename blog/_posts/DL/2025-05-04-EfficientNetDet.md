@@ -8,7 +8,7 @@ tags: [EfficientNet, EfficientDet, BiFPN]
 ---
 [WRN](https://deep-learning-study.tistory.com/519)
 [EfficientNet and EfficientDet](https://eehoeskrap.tistory.com/404)
-BEYOND AI BASIC
+BoostCampAITECH
 {:.note title="출처 및 참고"}
 
 * this unordered seed list will be replaced by the toc
