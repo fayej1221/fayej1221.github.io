@@ -83,22 +83,22 @@ self라는 말처럼 자기 자신에 대해서 주목한다는 뜻으로 하나
 ### 과정
 
 1. **query, key, value의 벡터가 생성**(임베딩 벡터보다 차원이 64로 작음, 임베딩 및 인코더 입출력 벡터는 512로 multi-head attention 계산을 일정하게 유지하기 위함, head가 8이므로 512d에서 나눠준 64사용)
-    1. x1에 WQ 가중치 행렬을 곱하면 해당 단어와 관련된 query 벡터인 q1이 생성
-    2. 입력 문장의 각 단어에 해서 query, key, value의 projection을 생성하게 됨
+    - x1에 WQ 가중치 행렬을 곱하면 해당 단어와 관련된 query 벡터인 q1이 생성
+    - 입력 문장의 각 단어에 해서 query, key, value의 projection을 생성하게 됨
     
     ![image.png](../../../assets/img/Transformer/image%207.png)
     
 2. **query, key 벡터를 곱하여(dot product) attention socre 계산**
-    1. Thinking에 대한 self-attention을 계산한다면 **query q1에 대해서 각 위치의 key 벡터를 곱해줌**으로써 각 위치별 attention socre를 구함
-    2. 이 score는 해당 위치의 단어가 다른 위치의 단어에 얼마나 집중할지를 나타냄
+    - Thinking에 대한 self-attention을 계산한다면 **query q1에 대해서 각 위치의 key 벡터를 곱해줌**으로써 각 위치별 attention socre를 구함
+    - 이 score는 해당 위치의 단어가 다른 위치의 단어에 얼마나 집중할지를 나타냄
         
         ![image.png](../../../assets/img/Transformer/image%208.png)
         
-3. **attention score를 $\sqrt{d_k}$(8)로 나누고 softmax 함수를 취해 확률 형태로 변경**
-    1. 8: 논문에서 사용된 핵심 벡터 차원의 64의 제곱근
-    2. softmax 연산은 정수를 모두 양수로 구하고 합이 1
+3. **attention score를 $$\sqrt{d_k}$$(8)로 나누고 softmax 함수를 취해 확률 형태로 변경**
+    - 8: 논문에서 사용된 핵심 벡터 차원의 64의 제곱근
+    - softmax 연산은 정수를 모두 양수로 구하고 합이 1
 4. **softmax score를 weight로 하여 각 위치의 value 벡터와 weighted sum 계산**
-    1. 집중하고자 하는 단어는 그대로 유지하고, 관련이 없다면 0.0001과 같은 작은 값을 곱하여 제외
+    - 집중하고자 하는 단어는 그대로 유지하고, 관련이 없다면 0.0001과 같은 작은 값을 곱하여 제외
 5. **최종적으로 마지막 z가 특정 위치에서의 self-attention score임**
 
 ![image.png](../../../assets/img/Transformer/image%209.png)
@@ -127,12 +127,12 @@ X 행렬의 각 행은 입력 문장의 각 단어에 해당하고 임베딩 벡
 
 ![image.png](../../../assets/img/Transformer/image%2013.png)
 
-각 head 별로 $W^Q, W^V, W^K$가 존재하여 병렬적으로 attetnion을 수행, 각 head별로 추출된 $d_v$벡터를 이어 붙이고(concat) 이를 $W^O \in \mathbb{R}^{h d_v \times d_{model}}$에 곱한 값을 self attetnion sublayer의 최종 결과값으로 사용함
+각 head 별로 $$W^Q, W^V, W^K$$가 존재하여 병렬적으로 attetnion을 수행, 각 head별로 추출된 $$d_v$$벡터를 이어 붙이고(concat) 이를 $$W^O \in \mathbb{R}^{h d_v \times d_{model}}$$에 곱한 값을 self attetnion sublayer의 최종 결과값으로 사용함
 
 1. **해당 시퀀스의 특정 위치에 대해 다른 위치에 대한 attention 능력을 향상**
 2. **attention layer에 여러 개의  representation subspace를 가질 수 있게 함**
-    1. q/k/v의 가중치 행렬이 여러 세트이고, 무작위로 초기화, 학습 후 입력 임베딩(또는 하위 인코더/디코더의 벡터)을 서로 다른 공간으로 투영하는데 사용
-    2. q/k/v 행렬 셋이 여러개가 있고 각 셋은 무작위로 초기화, **학습 후에 각 셋은 입력 임베딩(또는 하위 인코더/디코더의 벡터)을 다른 표현 부분 공간에 투영하는데 사용**
+    - q/k/v의 가중치 행렬이 여러 세트이고, 무작위로 초기화, 학습 후 입력 임베딩(또는 하위 인코더/디코더의 벡터)을 서로 다른 공간으로 투영하는데 사용
+    - q/k/v 행렬 셋이 여러개가 있고 각 셋은 무작위로 초기화, **학습 후에 각 셋은 입력 임베딩(또는 하위 인코더/디코더의 벡터)을 다른 표현 부분 공간에 투영하는데 사용**
 
 ![image.png](../../../assets/img/Transformer/image%2014.png)
 
@@ -157,13 +157,13 @@ head 별로 attention score를 뽑으면 각기 다른 위치에 집중하는 �
 Transformer에서는 mluti-head attetnion을 3가지 구성요소에 사용
 
 1. **Decoder의 encoder-decoder attetnion layer에 사용**
-    1. q는 직전 decoder layer로부터 받은 출력으로 사용
-    2. k, v는 encoder의 출력으로 사용
-    3. 이 과정으로 decoder의 각 위치가 입력 시퀀스의 모든 위치에 대해 attetnion을 수행
+    - q는 직전 decoder layer로부터 받은 출력으로 사용
+    - k, v는 encoder의 출력으로 사용
+    - 이 과정으로 decoder의 각 위치가 입력 시퀀스의 모든 위치에 대해 attetnion을 수행
 2. **Encoder의 self-attention layer에 사용**
-    1. q/k/v 모두 직전 encoder layer로부터 받은 출력이 계산되고 encoder의 각 위치가 입력 시퀀스의 모든 위치에 대해 attetnion수행
+    - q/k/v 모두 직전 encoder layer로부터 받은 출력이 계산되고 encoder의 각 위치가 입력 시퀀스의 모든 위치에 대해 attetnion수행
 3. **마찬가지로 Decoder의 self-attention layer에 사용**
-    1. 다만 decoder에서는 **현재 입력은 미래가 아닌 과거로부터 영향을 받는다는 causality, auto-regressive를 유지**하기 위해서 softmax 함수에 들어가기 전에 dot-product 수행 시 해당 위치에 대한 **미래 부분을 -∞로 마스킹하여 해당 부분에 대해 attetnion이 수행되지 못하게 함**
+    - 다만 decoder에서는 **현재 입력은 미래가 아닌 과거로부터 영향을 받는다는 causality, auto-regressive를 유지**하기 위해서 softmax 함수에 들어가기 전에 dot-product 수행 시 해당 위치에 대한 **미래 부분을 -∞로 마스킹하여 해당 부분에 대해 attetnion이 수행되지 못하게 함**
 
 # Other Details
 
@@ -175,7 +175,7 @@ Transformer에서는 mluti-head attetnion을 3가지 구성요소에 사용
 - 특히 sublayer마다 residual connection, layer normlization 적용
 - 각 sublayer의 최종 출력은 입력 x에 대해서
     
-    $LayerNorm(x+Sublayer(x))$
+    $$LayerNorm(x+Sublayer(x))$$
     
     가 됨
     
@@ -210,7 +210,7 @@ transformer의 tensor2tensor의 구현 → 두 신호를 직접 연결한 것이
 
 ## Feed Forward
 
-$FFN(x) = max(0, xW_1 + b_1) W_2 + b_2$
+$$FFN(x) = max(0, xW_1 + b_1) W_2 + b_2$$
 
 - W1: 입력 차원 → 확장 차원
 - W2: 확장 차원 → 입력 차원
