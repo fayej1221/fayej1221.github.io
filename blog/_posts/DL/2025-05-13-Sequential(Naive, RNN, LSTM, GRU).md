@@ -58,7 +58,7 @@ Sequential Model을 구현할 수 있는 방법 중 하나가 바로 RNN, MLP와
 
 ![image.png](../../../assets/img/Sequential(Naive,%20RNN,%20LSTM,%20GRU)/image%204.png)
 
-$h_t$는 $h_{t-1}$ 전달된 정보를 시간 순으로 늘어 놓았고, RNN 구조를 시간순으로 풀면 fully connected layer로 표현할 수 있음
+$$h_t$$는 $$h_{t-1}$$ 전달된 정보를 시간 순으로 늘어 놓았고, RNN 구조를 시간순으로 풀면 fully connected layer로 표현할 수 있음
 
 ## Short-term dependencies
 
@@ -66,15 +66,15 @@ $h_t$는 $h_{t-1}$ 전달된 정보를 시간 순으로 늘어 놓았고, RNN �
 
 ![image.png](../../../assets/img/Sequential(Naive,%20RNN,%20LSTM,%20GRU)/image%205.png)
 
-- 예를 들면 $h_1$은 출발점 $h_0$과 input $x_1$에 신경망의 weight를 곱하고 활성함수의 값을 사용해서 생성이 되는데 중첩되면 $h_t$에서 $h_0$의 영향은 활성함수와 weight를 t번 거친 값을 가지게 됨
-- 이때 Activation Function으로 ReLU를 사용하면 양수 W가 계속 곱해지는데 W의 t제곱을 $h_0$에 곱하게 됨, 즉 $h_0$이 지수적으로 커져서 exploding gradient가 발생함
-- 반면 Sigmoid를 사용하면 $h_0$은 매우 작아져서 의미가 없어지게 됨
+- 예를 들면 $$h_1$$은 출발점 $$h_0$$과 input $$x_1$$에 신경망의 weight를 곱하고 활성함수의 값을 사용해서 생성이 되는데 중첩되면 $$h_t$$에서 $$h_0$$의 영향은 활성함수와 weight를 t번 거친 값을 가지게 됨
+- 이때 Activation Function으로 ReLU를 사용하면 양수 W가 계속 곱해지는데 W의 t제곱을 $$h_0$$에 곱하게 됨, 즉 $$h_0$$이 지수적으로 커져서 exploding gradient가 발생함
+- 반면 Sigmoid를 사용하면 $$h_0$$은 매우 작아져서 의미가 없어지게 됨
 
-![image.png](3a4785eb-8f43-46a1-a935-fff8e6cbb838.png)
+![image.png](../../../assets/img/Sequential(Naive,%20RNN,%20LSTM,%20GRU)/3a4785eb-8f43-46a1-a935-fff8e6cbb838.png)
 
 ## Long-term dependencies
 
-그러한 문제를 해결한 것으로 멀리 떨어진 과거의 정보도 현재에 영향을 줄 수 있또록 설계됨
+그러한 문제를 해결한 것으로 멀리 떨어진 과거의 정보도 현재에 영향을 줄 수 있도록 설계됨
 
 # Long Short Term Memory(LSTM)
 
@@ -109,15 +109,15 @@ sigmoid layer output은 0에서 1사이의 숫자를 출력하는데 각 구성 
 ### Gate 설명
 
 - **Forget Gate: Decide which information to throw away**
-    - $h_{t-1}$: 이전의 output, $x_t$: 현재 입력을 이용해서 weight를 곱하고 activation을 통과시켜서 현재 cell state에 필요한 정보를 정함
+    - $$h_{t-1}$$: 이전의 output, $$x_t$$: 현재 입력을 이용해서 weight를 곱하고 activation을 통과시켜서 현재 cell state에 필요한 정보를 정함
     - activation이 현재 sigmoid로 0과 1 사이의 값(앞서 언급했던 것 처럼 0이면, 삭제 1이면 그대로 전달)
     
     ![image.png](../../../assets/img/Sequential(Naive,%20RNN,%20LSTM,%20GRU)/image%2011.png)
     
 - **Input Gate: Decide which information to store in the cell state**
-    - $i_t$: 또 다른 network를 통해서 어떤 정보를 추가할지
-    - $\tilde{C}_t$: 현재 정보와 이전 출력값을 가지고 만드는 cell state의 예비 값
-    - $i_t * \tilde{C}_t$: 각 상태 값을 얼마나 업데이트할지 결정한 비율에 따라 조정된 새로운 후보 값
+    - $$i_t$$: 또 다른 network를 통해서 어떤 정보를 추가할지
+    - $$\tilde{C}_t$$: 현재 정보와 이전 출력값을 가지고 만드는 cell state의 예비 값
+    - $$i_t * \tilde{C}_t$$: 각 상태 값을 얼마나 업데이트할지 결정한 비율에 따라 조정된 새로운 후보 값
     
     ![image.png](../../../assets/img/Sequential(Naive,%20RNN,%20LSTM,%20GRU)/image%2012.png)
     
