@@ -3,9 +3,16 @@ layout: blog
 title: Blog
 description: >
   The faye-1221 blog.
-last_modified_at: '{{ "now" | date: "%Y-%m-%d" }}'
 no_link_title: false 
 no_excerpt: false 
 hide_image: false
 cover: true
 ---
+
+{% for post in site.posts %}
+  <article>
+    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+    <p>{{ post.excerpt }}</p>
+  </article>
+{% endfor %}
