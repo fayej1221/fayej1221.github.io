@@ -12,7 +12,9 @@ cover: true
 {% for post in site.posts %}
   <article>
     <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+    <time datetime="{{ post.last_modified_at | date_to_xmlschema }}">
+      {{ post.last_modified_at | date: "%Y-%m-%d" }}
+    </time>
     <p>{{ post.excerpt }}</p>
   </article>
 {% endfor %}
