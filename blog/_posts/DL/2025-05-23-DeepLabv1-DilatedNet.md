@@ -19,14 +19,13 @@ BoostCampAITECH
 # FCN의 한계점
 
 1. **객체의 크기가 크거나 작은 경우 예측을 잘 하지 못함**
-    - 큰 오브젝트의 경우 지역적인 정보만으로 예측함
-        - 유리창에 비친 자전거를 인식하는 문제
+    - 큰 오브젝트의 경우 지역적인 정보만으로 예측함: 유리창에 비친 자전거를 인식하는 문제
     - 같은 오브젝트여도 다르게 라벨링
     - 작은 오브젝트 무시
 2. **Object의 디테일한 모습이 사라지는 문제**
     - Deconvolution 절차가 간단해서 경계를 학습하기에 어려움
 
-이러한 문제를 해결하기 위한 방법으로 Decoder 개선, Skip Connection 적용, Receptive Field 확장한 모델들에 대해서 살펴봄
+이러한 문제를 해결하기 위한 방법으로 Decoder 개선, Skip Connection 적용, **Receptive Field 확장한 모델**들에 대해서 살펴봄
 
 # Receptive Field를 확장시킨 모델
 
@@ -66,7 +65,6 @@ Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRF
 ### 아키텍쳐
 
 > CRF는 주변의 상태에 따라 현재의 상태를 결정하는 알고리즘으로, 각 변수의 독립성이 보장되지 않아도 되는 장점이 있는데 CNN만으로는 Segmentation이 잘되지 않아서 CNN과 CRF를 결합하여 문제를 해결했으며, Hole algorithm을 도입을 통해서 빠른 CNN 계산이 가능하도록 함
-> 
 
 아래는 DeepLab v1-Large FOV의 전체적인 구조로 VGG 16을 수정하여 구현
 
@@ -102,8 +100,7 @@ Dense CRF에 MCMC(Markov Chain Monte Carlo) 방식을 사용하면 좋은 결과
 > **mean filed approximation 방법?**
 물리학이나 확률 이론에서 많이 사용되는 방법, 복잡한 모델을 설명하기 위해서 더 간단한 모델을 선택하는 방식
 
-**많은 변수들로 이뤄진 복잡한 관계를 갖는 상황에서 특정 변수와 다른 변수들의 관계의 평균을 취하면 평균으로부터 변화(fluctuation)을 해석하는데도 용이하고 평균으로 단순화된 또는 근사된 모델을 사용시 전체를 조망하기에 좋아짐**
-> 
+많은 변수들로 이뤄진 복잡한 관계를 갖는 상황에서 특정 변수와 다른 변수들의 관계의 평균을 취하면 평균으로부터 변화(fluctuation)을 해석하는데도 용이하고 평균으로 단순화된 또는 근사된 모델을 사용시 전체를 조망하기에 좋아짐
 
 **Dense CRF는 다음의 에너지 함수 E(x)를 최소화**
 
