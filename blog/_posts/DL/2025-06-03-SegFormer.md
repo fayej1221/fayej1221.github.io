@@ -10,6 +10,9 @@ tags: [SegFormer, ViT, efficient-self-attention, mix-ffn, overlapping-patch]
 BoostCampAITECH
 {:.note title="출처 및 참고"}
 
+* this unordered seed list will be replaced by the toc
+{:toc}
+
 Vision Transformer가 Global 정보를 self-attention 기법으로 추출하여 Image Classification에서 높은 성능을 달성하였음 대표적으로 SETR, SegFormer, MaskFormer, SeMask가 있음
 
 - SETR(2020): Semantic Segmentation Task에 ViT를 backbone으로 적용한 대표적인 모델
