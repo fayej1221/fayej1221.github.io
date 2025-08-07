@@ -37,7 +37,7 @@ keywords:              [학습 기록, 데이터 분석, 머신러닝, 컴퓨터
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
 
-logo:                  /assets/img/profile.
+logo:                  /assets/img/profile.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
