@@ -3,7 +3,7 @@
 
 # Uncomment and set the URL of your site (with protocol, e.g. `https://`)
 # NOTE: You don't need to provide this property when hosting on GitHub Pages or Netlify.
-url:                   https://faye-1221.github.io
+url:                   https://fayej1221.github.io
 
 # Uncomment and set the "base URL" of your site.
 # When your site is in a subdirectory, set to `/<name of directory>`,
@@ -20,7 +20,7 @@ url:                   https://faye-1221.github.io
 lang:                  ko
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 faye-1221
+title:                 fayej1221
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -37,13 +37,13 @@ keywords:              [학습 기록, 데이터 분석, 머신러닝, 컴퓨터
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
 
-logo:                  /assets/img/Togepi.jpeg
+logo:                  /assets/img/profile.
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                faye-1221
-  email:               faye_1221@naver.com
+  name:                faye
+  email:               fayej1221@naver.com
 
 # Add links to the sidebar.
 menu:
@@ -408,4 +408,4 @@ jekyll_compose:
         path: /assets/img/sidebar-bg.jpg
       links:
         - title: Project Link
-          url: https://faye-1221.github.io
+          url: https://fayej1221.github.io
