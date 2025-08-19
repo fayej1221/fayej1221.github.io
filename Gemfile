@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+gem "github-pages", group: :jekyll_plugins
 
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
@@ -8,7 +9,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.2"
+gem "jekyll", "~> 4.3"
 
 gem "jekyll-theme-hydejack", "~> 9.1"
 
@@ -60,6 +61,7 @@ group :jekyll_plugins do
   
   # Remote theme plugin 추가
   gem "jekyll-remote-theme"
+
 end
 
 gem 'wdm' if Gem.win_platform?
